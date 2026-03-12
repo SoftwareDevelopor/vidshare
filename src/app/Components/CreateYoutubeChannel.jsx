@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { useDropzone } from 'react-dropzone';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 
 export default function CreateYoutubeChannel() {
@@ -55,7 +56,7 @@ export default function CreateYoutubeChannel() {
                 formData.append('singleimage', bannerFile);
 
                 const bannerResponse = await axios.post(
-                    'http://localhost:5000/api/auth/upload-channel-banner',
+                    'https://youtube-server-omega.vercel.app/api/auth/upload-channel-banner',
                     formData,
                     {
                         headers: {
@@ -66,7 +67,7 @@ export default function CreateYoutubeChannel() {
                 );
 
                 if (!bannerResponse.data.status) {
-                    console.error('Banner upload failed:', bannerResponse.data.msg);
+                    toast.error('Banner upload failed: ' + bannerResponse.data.msg);
                     setLoading(false);
                     return;
                 }
@@ -74,7 +75,7 @@ export default function CreateYoutubeChannel() {
 
             // Then update channel details
             const channelResponse = await axios.post(
-                'http://localhost:5000/api/auth/update-profile',
+                'https://youtube-server-omega.vercel.app/api/auth/update-profile',
                 {
                     channel_name: e.target.channel_name.value,
                     date_of_birth: e.target.date_of_birth.value,
@@ -93,11 +94,11 @@ export default function CreateYoutubeChannel() {
                 setBannerFile(null);
                 route.push('/')
 
-            } else {
-                console.error('Channel creation failed:', channelResponse.data.msg);
+                } else {
+                    toast.error('Channel creation failed: ' + channelResponse.data.msg);
             }
         } catch (error) {
-            console.error('Error creating channel:', error);
+            toast.error('An error occurred while creating the channel. Please try again.');
         } finally {
             setLoading(false);
         }

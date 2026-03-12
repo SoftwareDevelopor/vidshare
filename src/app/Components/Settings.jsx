@@ -69,7 +69,7 @@ export default function Settings() {
   let token = useSelector((state) => state.userdetails.token)
   useEffect(() => {
     if (token) {
-      axios.post('http://localhost:5000/api/auth/view-profile', {}, {
+      axios.post('https://youtube-server-omega.vercel.app/api/auth/view-profile', {}, {
         headers: {
           'authorization': `Bearer ${token}`
         }
@@ -85,7 +85,7 @@ export default function Settings() {
 
   let updatecountry = (e) => {
     let country = e.target.value
-    axios.post('http://localhost:5000/api/auth/update-profile', { country }, {
+    axios.post('https://youtube-server-omega.vercel.app/api/auth/update-profile', { country }, {
       headers: {
         'authorization': `Bearer ${token}`
       }

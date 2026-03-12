@@ -86,7 +86,7 @@ export default function PrivacyPolicy() {
               If you have any questions about this Privacy Policy, you can contact us. We are committed to protecting your privacy and ensuring you have a positive experience on our platform.
             </p>
             <p>
-              You can reach out to our support team through the help section of our application or by emailing us at <a href="mailto:privacy@example.com" className="text-red-500 hover:underline">privacy@example.com</a>.
+              You can reach out to our support team through the help section of our application or by emailing us at <a href="#" className="text-red-500 hover:underline">saurabhkumar13618@gmail.com</a>.
             </p>
           </Section>
         </main>

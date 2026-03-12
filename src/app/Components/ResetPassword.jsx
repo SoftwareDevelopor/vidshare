@@ -12,7 +12,7 @@ export default function ResetPassword() {
   })
   let handleResetPassword = (e) => {
     e.preventDefault()
-    axios.post('http://localhost:5000/api/auth/reset-password', {
+    axios.post('https://youtube-server-omega.vercel.app/api/auth/reset-password', {
       new_password: e.target.new_password.value,
       confirm_password: e.target.confirm_password.value,
       headers: {
@@ -23,7 +23,7 @@ export default function ResetPassword() {
         toast.success(res.data.msg)
         
       }).catch((err) => {
-        console.log(err)
+        toast.error("Something went wrong...!")
       })
   }
   return (

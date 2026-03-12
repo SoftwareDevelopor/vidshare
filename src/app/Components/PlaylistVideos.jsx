@@ -29,7 +29,7 @@ export default function PlaylistVideos() {
   let [deletevideo, setdeletevideo] = useState(false)
 
   useEffect(() => {
-    axios.post(`http://localhost:5000/api/video/view-all-videos-in-playlist?id=${id}`)
+    axios.post(`https://youtube-server-omega.vercel.app/api/video/view-all-videos-in-playlist?id=${id}`)
       .then((response) => {
         if (response.data.status) {
           setViewVideosInPlaylist(response.data._data.videoids)
@@ -49,7 +49,7 @@ export default function PlaylistVideos() {
   }, [id, addvideo, deletevideo])
 
   useEffect(() => {
-    axios.post("http://localhost:5000/api/video/getallvideos")
+    axios.post("https://youtube-server-omega.vercel.app/api/video/getallvideos")
       .then((response) => {
         if (response.data.status) {
           setVideos(response.data._data)
@@ -70,7 +70,7 @@ export default function PlaylistVideos() {
     }
     let playlistid = playlist._id
     console.log(VIDEOID)
-    axios.post(`http://localhost:5000/api/video/update-playlist?id=${playlistid}`, {
+    axios.post(`https://youtube-server-omega.vercel.app/api/video/update-playlist?id=${playlistid}`, {
       videoids: VIDEOID
     })
       .then((response) => {
@@ -87,7 +87,7 @@ export default function PlaylistVideos() {
 
   let deleteVideoInPlaylist = (videoid) => {
     let playlistid = playlist._id
-    axios.post(`http://localhost:5000/api/video/delete-video-in-playlist?id=${playlistid}`, {
+    axios.post(`https://youtube-server-omega.vercel.app/api/video/delete-video-in-playlist?id=${playlistid}`, {
       videoid: videoid
     })
       .then((response) => {
@@ -96,7 +96,7 @@ export default function PlaylistVideos() {
           setdeletevideo(!deletevideo)
         }
       }).catch((error) => {
-        console.log(error)
+        toast.error("Something went wrong...!")
       })
   }
   
@@ -113,7 +113,7 @@ export default function PlaylistVideos() {
                   <h1 className='text-xl font-extrabold mb-2'>{playlist.name}</h1>
                   <p className='text-lg font-medium mb-2'>{playlist.description}</p>
                   <div className="flex gap-5 items-center p-2">
-                    <img src={"http://localhost:5000/uploads/users/" + user.image} alt="" className='max-w-25 max-h-25 w-full rounded-full' />
+                    <img src={"https://youtube-server-omega.vercel.app/uploads/users/" + user.image} alt="" className='max-w-25 max-h-25 w-full rounded-full' />
                     <div>
                       <h2 className='text-lg font-bold'>{user.channel_name}</h2>
                       <h3 className='text-md font-bold'>{user.name}</h3>
@@ -133,7 +133,7 @@ export default function PlaylistVideos() {
                         <Link href={`/watch/${video._id}`}>
                           <div className="grid grid-cols-[30%_auto] gap-3 border p-3 rounded-xl border-gray-800 hover:scale-105 hover:shadow-gray-600 shadow-md relative" key={index}>
                             <span className='absolute top-2 end-2 p-2 border rounded-full' onClick={() => deleteVideoInPlaylist(video._id)}> <MdDeleteOutline className='text-xl' /> </span>
-                            <img src={"http://localhost:5000/uploads/videos/thumbnails/" + video.thumbnail} alt="" className='h-full rounded-lg' />
+                            <img src={"https://youtube-server-omega.vercel.app/uploads/videos/thumbnails/" + video.thumbnail} alt="" className='h-full rounded-lg' />
                             <div className="">
                               <h1 className='text-xl font-bold'>{video.videotitle}</h1>
                               <h1 className='text-lg font-semibold'>{user.channel_name}</h1>
@@ -166,9 +166,9 @@ export default function PlaylistVideos() {
               videos.map((v, i) => {
                 return (
                   <div key={i} className="border border-gray-300 lg:p-1 rounded-lg h-[200px]" onClick={() => handleaddvideos(v._id)}>
-                    <img src={"http://localhost:5000/uploads/videos/thumbnails/" + v.thumbnail} alt={v.videotitle} className="w-full object-cover rounded-md mb-2" />
+                    <img src={"https://youtube-server-omega.vercel.app/uploads/videos/thumbnails/" + v.thumbnail} alt={v.videotitle} className="w-full object-cover rounded-md mb-2" />
                     <div className="flex gap-2 p-2">
-                      <img src={"http://localhost:5000/uploads/users/" + v.videouploader.image} alt={v.videouploader.name} className="w-8 h-8 rounded-full" />
+                      <img src={"https://youtube-server-omega.vercel.app/uploads/users/" + v.videouploader.image} alt={v.videouploader.name} className="w-8 h-8 rounded-full" />
                       <div>
                         <h1 className="text-sm font-bold">{v.videotitle}</h1>
                         <h2 className="text-sm text-gray-600">{v.videouploader.channel_name}</h2>

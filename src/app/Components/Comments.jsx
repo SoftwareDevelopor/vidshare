@@ -30,14 +30,18 @@ export default function Comments({ comments }) {
 
     try {
       await axios.post(
-        `http://localhost:5000/api/video/update-comments?id=${comments._id}`,
+        `https://youtube-server-omega.vercel.app/api/video/update-comments?id=${comments._id}`,
         { comments: { comments: updated } }
       )
       .then((res)=>{
-        console.log(res.data)
+        if(res.data.status==true){
+          toast.success(res.data.msg)
+        }else{
+          toast.info(res.data.msg)
+        }
       })
     } catch (err) {
-      console.error('Failed to add comment', err)
+      toast.error("Failed to add comment")
     }
   }
 
@@ -51,7 +55,7 @@ export default function Comments({ comments }) {
         <img
           src={
             comments?.videouploader?.image
-              ? `http://localhost:5000/uploads/users/${comments.videouploader.image}`
+              ? `https://youtube-server-omega.vercel.app/uploads/users/${comments.videouploader.image}`
               : 'https://via.placeholder.com/40?text=👤'
           }
           alt="avatar"
@@ -102,7 +106,7 @@ export default function Comments({ comments }) {
                   src={
                     avatar.startsWith('http')
                       ? avatar
-                      : `http://localhost:5000/uploads/users/${avatar}`
+                      : `https://youtube-server-omega.vercel.app/uploads/users/${avatar}`
                   }
                   alt="avatar"
                   className="w-10 h-10 rounded-full"

@@ -23,7 +23,7 @@ export default function UserChannelPage() {
 
     useEffect(() => {
         if (token) {
-            axios.post('http://localhost:5000/api/auth/view-profile', {}, {
+            axios.post('https://youtube-server-omega.vercel.app/api/auth/view-profile', {}, {
                 headers: {
                     'authorization': `Bearer ${token}`
                 }
@@ -78,7 +78,7 @@ export default function UserChannelPage() {
                                             subscribers || subscribers.length > 0 ?
                                                 subscribers.map((image, index) => {
                                                     return (
-                                                        <img src={`http://localhost:5000/uploads/users/${image.image}`} alt="" className='w-15 h-15 rounded-full' />
+                                                        <img src={`https://youtube-server-omega.vercel.app/uploads/users/${image.image}`} alt="" className='w-15 h-15 rounded-full' />
                                                     )
                                                 })
                                                 :

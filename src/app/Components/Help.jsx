@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import { AiOutlineSearch } from 'react-icons/ai'
 
 export default function Help() {
   const topics = [

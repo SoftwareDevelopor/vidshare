@@ -68,7 +68,7 @@ export default function UploadVideo() {
 
     useEffect(() => {
          if (token) {
-            axios.post('http://localhost:5000/api/auth/view-profile', {
+            axios.post('https://youtube-server-omega.vercel.app/api/auth/view-profile', {
                 headers: {
                     'authorization': `Bearer ${token}`
                 }
@@ -77,7 +77,7 @@ export default function UploadVideo() {
                     setuser(res.data._data)
                 })
                 .catch((error) => {
-                    console.error("Error fetching profile:", error);
+                    toast.error("Something went wrong...!")
                 });
         }
     }, [token])
@@ -100,7 +100,7 @@ export default function UploadVideo() {
         if (videoFile) formData.append('videofile', videoFile);
 
         try {
-            axios.post('http://localhost:5000/api/video/uploadvideo', formData)
+            axios.post('https://youtube-server-omega.vercel.app/api/video/uploadvideo', formData)
             .then((res) => {
                 if (res.data.status) {
                     toast.success(res.data.msg);
@@ -117,7 +117,7 @@ export default function UploadVideo() {
                 toast.error("An error occurred while uploading the video. Please try again.");
             });
         } catch (error) {
-            console.error(error);
+            toast.error("Something went wrong...!")
         }
     }
 

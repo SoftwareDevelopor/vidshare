@@ -43,7 +43,7 @@ export default function VideosSlider({ id }) {
     let [watchlatervideoid, setwatchlatervideoid] = useState([])
 
     useEffect(() => {
-        axios.post(`http://localhost:5000/api/auth/viewProfileById?id=${id}`)
+        axios.post(`https://youtube-server-omega.vercel.app/api/auth/viewProfileById?id=${id}`)
             .then((response) => {
                 setImagePath(response.data.imagepath + response.data._data.image)
                 setvideos(response.data._data.videoIds)
@@ -67,7 +67,7 @@ export default function VideosSlider({ id }) {
     }
 
     let handleUpdatePlaylist = (playlistid) => {
-        axios.post(`http://localhost:5000/api/video/update-playlist?id=${playlistid}`, {
+        axios.post(`https://youtube-server-omega.vercel.app/api/video/update-playlist?id=${playlistid}`, {
             videoids: VIDEOID
         })
             .then((response) => {
@@ -87,7 +87,7 @@ export default function VideosSlider({ id }) {
         if (!watchlatervideoid.includes(videoid)) {
             setwatchlatervideoid([...watchlatervideoid, videoid])
         }
-        axios.post(`http://localhost:5000/api/video/watch-later/add-video-watch-later?id=${id}`,{
+        axios.post(`https://youtube-server-omega.vercel.app/api/video/watch-later/add-video-watch-later?id=${id}`,{
             VIDEOID:watchlatervideoid
         })
         .then((response)=>{
@@ -105,7 +105,7 @@ export default function VideosSlider({ id }) {
 
     let deleteVideo=(deleteVideoId)=>{
         if(confirm("Are you sure want to delete this video ?")){
-            axios.post(`http://localhost:5000/api/video/delete-video/${deleteVideoId}`)
+            axios.post(`https://youtube-server-omega.vercel.app/api/video/delete-video/${deleteVideoId}`)
             .then((response)=>{
                 if(response.data.status==true){
                     toast.success(response.data.msg)
@@ -114,9 +114,8 @@ export default function VideosSlider({ id }) {
                 else{
                     toast.info(response.data.msg)
                 }
-                console.log(response.data)
             }).catch((error)=>{
-                console.log(error)
+                toast.error("Something went wrong...!")
             })
         }
     }
@@ -135,7 +134,7 @@ export default function VideosSlider({ id }) {
 
                                         <Link href={`/watch/${video._id}`} key={index}>
                                             <div className="border border-gray-300 lg:m-2 rounded-lg h-[330px] group relative hover:bg-gray-100">
-                                                <img src={"http://localhost:5000/uploads/videos/thumbnails/" + video.thumbnail} alt={video.videotitle} className="w-full h-50 object-cover rounded-md mb-2" />
+                                                <img src={"https://youtube-server-omega.vercel.app/uploads/videos/thumbnails/" + video.thumbnail} alt={video.videotitle} className="w-full h-50 object-cover rounded-md mb-2" />
                                                 <div className="flex gap-2 p-2">
                                                     <img src={ImagePath} alt={name} className="w-10 h-10 rounded-full" />
                                                     <div>
@@ -173,7 +172,7 @@ export default function VideosSlider({ id }) {
                             return (
                                 <div className="border border-gray-300 lg:m-2 rounded-lg h-[330px] group relative hover:bg-gray-100" key={index} onMouseLeave={() => setVisibility(false)}>
                                     <Link href={`/watch/${video._id}`} >
-                                        <img src={"http://localhost:5000/uploads/videos/thumbnails/" + video.thumbnail} alt={video.videotitle} className="w-full h-50 object-cover rounded-md mb-2" />
+                                        <img src={"https://youtube-server-omega.vercel.app/uploads/videos/thumbnails/" + video.thumbnail} alt={video.videotitle} className="w-full h-50 object-cover rounded-md mb-2" />
                                         <div className="flex gap-2 p-2">
                                             <img src={ImagePath} alt={name} className="w-10 h-10 rounded-full" />
                                             <div>
@@ -218,7 +217,7 @@ export default function VideosSlider({ id }) {
                                     {playlist.image ? (
                                         <>
                                             <img
-                                                src={`http://localhost:5000/uploads/videos/playlists/${playlist.image}`}
+                                                src={`https://youtube-server-omega.vercel.app/uploads/videos/playlists/${playlist.image}`}
                                                 alt={playlist.name}
                                                 className="w-full h-20 object-cover"
                                             />

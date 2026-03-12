@@ -7,6 +7,7 @@ import Playlist from './Playlist'
 import { BsPlusCircleFill } from 'react-icons/bs'
 import WatchLater from './WatchLater'
 import LikedVideos from './LikedVideos'
+import { toast } from 'react-toastify'
 
 export default function ChannelPage() {
   let { id } = useParams()
@@ -16,14 +17,14 @@ export default function ChannelPage() {
   let [length, setlength] = useState(0)
 
   useEffect(() => {
-    axios.post(`http://localhost:5000/api/auth/viewProfileById?id=${id}`)
+    axios.post(`https://youtube-server-omega.vercel.app/api/auth/viewProfileById?id=${id}`)
       .then((response) => {
         setImagePath(response.data.imagepath + response.data._data.image)
         setuser(response.data._data)
         setChannelBannerImagePath(response.data.imagepath + response.data._data.channel_banner_image)
         setlength(response.data._data.videoIds.length)
       }).catch((error) => {
-        console.log(error)
+        toast.error("Something went wrong...!")
       })
   }, [id])
 
