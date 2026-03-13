@@ -3,8 +3,8 @@
 import axios from 'axios';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { FiSettings, FiBell, FiSliders, FiMoon, FiHelpCircle, FiChevronRight } from 'react-icons/fi';
-import { MdVerified, MdPayment } from 'react-icons/md';
+import { FiSettings, FiBell, FiSliders, FiMoon, FiHelpCircle } from 'react-icons/fi';
+import { MdVerified } from 'react-icons/md';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 

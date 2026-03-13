@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import Link from 'next/link'
-import { FaPlay, FaDownload, FaTrash, FaClock, FaUser } from 'react-icons/fa'
+import { FaPlay, FaDownload, FaClock, FaUser } from 'react-icons/fa'
 import { MdDeleteOutline } from 'react-icons/md'
 
 export default function ViewDownloadedVideos() {
