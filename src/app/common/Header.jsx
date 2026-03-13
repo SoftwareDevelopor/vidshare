@@ -28,7 +28,7 @@ export default function Header() {
 
     let handle = (e) => {
         e.preventDefault()
-        axios.post('https://youtube-server-omega.vercel.app/api/auth/register', e.target)
+        axios.post('https://youtube-server-all.up.railway.app/api/auth/register', e.target)
             .then((res) => {
                 dispatch(userDetails({ token: res.data.token }))
                 setOpenModal(false)
@@ -36,7 +36,7 @@ export default function Header() {
                 toast.success(res.data.msg)
             })
             .catch((error) => {
-                console.log(error)
+                toast.error("Something went wrong...!")
             })
     }
 
@@ -52,7 +52,7 @@ export default function Header() {
             email: event.target.email.value,
             password: event.target.password.value
         }
-        axios.post('https://youtube-server-omega.vercel.app/api/auth/login', obj)
+        axios.post('https://youtube-server-all.up.railway.app/api/auth/login', obj)
             .then((respnse) => {
                 dispatch(userDetails({ token: respnse.data.token }))
                 toast.success(respnse.data.msg)
@@ -71,7 +71,7 @@ export default function Header() {
 
     useEffect(() => {
         if (token) {
-            axios.post('https://youtube-server-omega.vercel.app/api/auth/view-profile', {}, {
+            axios.post('https://youtube-server-all.up.railway.app/api/auth/view-profile', {}, {
                 headers: {
                     'authorization': `Bearer ${token}`
                 }
@@ -91,7 +91,7 @@ export default function Header() {
         let obj = {
             email: event.target.email.value
         }
-        axios.post('https://youtube-server-omega.vercel.app/api/auth/forgot-password', obj)
+        axios.post('https://youtube-server-all.up.railway.app/api/auth/forgot-password', obj)
             .then((response) => {
                 toast.info(response.data.msg)
                 setForgotModal(false)
@@ -116,7 +116,7 @@ export default function Header() {
         let obj = {
             searchedText: e.target.searchedText.value
         }
-        axios.post('https://youtube-server-omega.vercel.app/api/video/search-videos', obj)
+        axios.post('https://youtube-server-all.up.railway.app/api/video/search-videos', obj)
             .then((res) => {
                 if (res.data.status) {
                     toast.success(res.data.msg)

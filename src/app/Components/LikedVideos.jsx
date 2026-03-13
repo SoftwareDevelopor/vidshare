@@ -9,12 +9,11 @@ export default function LikedVideos({id}) {
 
     const [likedVideos, setLikedVideos] = useState([])
     const [imagePath, setImagePath] = useState("")
-    const [user, setUser] = useState('')
     const [updateState, setUpdateState] = useState(false)
 
     useEffect(() => {
         if (id) {
-            axios.post(`https://youtube-server-omega.vercel.app/api/video/liked-videos/view?id=${id}`)
+            axios.post(`https://youtube-server-all.up.railway.app/api/video/liked-videos/view?id=${id}`)
                 .then((response) => {
                     if (response.data.status === true) {
                         toast.success(response.data.msg)
@@ -30,12 +29,13 @@ export default function LikedVideos({id}) {
     }, [id, updateState])
 
     const handleUnlike = (videoId) => {
-        axios.post(`https://youtube-server-omega.vercel.app/api/video/decrement-like?id=${videoId}`, {
+        axios.post(`https://youtube-server-all.up.railway.app/api/video/decrement-like?id=${videoId}`, {
             dislikedByUserIds: id
         })
         .then((response) => {
             if (response.data.status === true) {
                 toast.success(response.data.msg)
+                setUpdateState(!updateState)
                 setLikedVideos(likedVideos.filter(v => v._id !== videoId))
             } else {
                 toast.info(response.data.msg)

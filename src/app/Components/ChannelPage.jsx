@@ -17,7 +17,7 @@ export default function ChannelPage() {
   let [length, setlength] = useState(0)
 
   useEffect(() => {
-    axios.post(`https://youtube-server-omega.vercel.app/api/auth/viewProfileById?id=${id}`)
+    axios.post(`https://youtube-server-all.up.railway.app/api/auth/viewProfileById?id=${id}`)
       .then((response) => {
         setImagePath(response.data.imagepath + response.data._data.image)
         setuser(response.data._data)

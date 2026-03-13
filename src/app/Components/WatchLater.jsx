@@ -14,7 +14,7 @@ export default function WatchLater({ id }) {
 
 
   useEffect(() => {
-    axios.post(`https://youtube-server-omega.vercel.app/api/video/watch-later/view-all-videos-watch-later?id=${id}`)
+    axios.post(`https://youtube-server-all.up.railway.app/api/video/watch-later/view-all-videos-watch-later?id=${id}`)
       .then((response) => {
         if (response.data.status == true) {
           toast.success(response.data.msg)
@@ -33,7 +33,7 @@ export default function WatchLater({ id }) {
   // console.log(watchlatervideos)
 
   let handleDeleteVideosInWatchLater = (VideoId) => {
-    axios.post(`https://youtube-server-omega.vercel.app/api/video/watch-later/update-watch-later?id=${id}`, {
+    axios.post(`https://youtube-server-all.up.railway.app/api/video/watch-later/update-watch-later?id=${id}`, {
       videoid: VideoId
     })
       .then((response) => {

@@ -24,7 +24,7 @@ export default function ViewDownloadedVideos() {
     const fetchDownloadedVideos = async () => {
         try {
             setLoading(true)
-            const response = await axios.post(`https://youtube-server-omega.vercel.app/api/video/download-video/view?id=${userid}`)
+            const response = await axios.post(`https://youtube-server-all.up.railway.app/api/video/download-video/view?id=${userid}`)
             
             if (response.data.status == true && response.data._data && response.data._data.length > 0) {
                 setdownloadvideos(response.data._data)
@@ -53,7 +53,7 @@ export default function ViewDownloadedVideos() {
     const fetchVideoDetails = async (downloads) => {
         try {
             const videosDetailPromises = downloads.map(download =>
-                axios.post(`https://youtube-server-omega.vercel.app/api/video/view-video?id=${download.videoid}`)
+                axios.post(`https://youtube-server-all.up.railway.app/api/video/view-video?id=${download.videoid}`)
                     .then(res => {
                         if (res.data.status && res.data._data) {
                             return {
@@ -86,7 +86,7 @@ export default function ViewDownloadedVideos() {
         try {
             setDownloading(videoId)
             
-            const url = `https://youtube-server-omega.vercel.app/api/video/download-video/create?id=${userid}`
+            const url = `https://youtube-server-all.up.railway.app/api/video/download-video/create?id=${userid}`
             const config = { responseType: 'blob' }
 
             const response = await axios.post(url, {
@@ -172,7 +172,7 @@ export default function ViewDownloadedVideos() {
                                 <div className="relative h-48 bg-gray-200 dark:bg-gray-700 overflow-hidden">
                                     {video.thumbnail ? (
                                         <img
-                                            src={`https://youtube-server-omega.vercel.app/uploads/videos/thumbnails/${video.thumbnail}`}
+                                            src={`https://youtube-server-all.up.railway.app/uploads/videos/thumbnails/${video.thumbnail}`}
                                             alt={video.videotitle}
                                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                                         />
