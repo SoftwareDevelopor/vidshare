@@ -2,7 +2,7 @@
 import axios from 'axios';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
-import { useDropzone } from 'react-dropzone/';
+import { useDropzone } from 'react-dropzone';
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { FaPlay } from 'react-icons/fa';
 import { MdDeleteOutline } from 'react-icons/md';

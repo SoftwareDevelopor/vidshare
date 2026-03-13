@@ -69,7 +69,6 @@ export default function PlaylistVideos() {
       SETVIDEOID([...VIDEOID, i])
     }
     let playlistid = playlist._id
-    console.log(VIDEOID)
     axios.post(`https://youtube-server-all.up.railway.app/api/video/update-playlist?id=${playlistid}`, {
       videoids: VIDEOID
     })
