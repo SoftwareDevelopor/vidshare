@@ -272,7 +272,7 @@ export default function WatchVideos() {
         }
     }
 
-    const shareUrl = (typeof window !== 'undefined') ? window.location.href : `http://localhost:3000/watch/${video?._id}`
+    const shareUrl = (typeof window !== 'undefined') ? window.location.href : `https://vidshare-khaki.vercel.app/watch/${video?._id}`
 
     return (
         <>
