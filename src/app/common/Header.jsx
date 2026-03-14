@@ -79,9 +79,11 @@ export default function Header() {
                 .then((res) => {
                     setImagePath(res.data.image_url + res.data._data.image)
                     setuser(res.data._data)
+                    setChannel(false)
                 })
                 .catch((error) => {
                     toast.error("Something went wrong...!")
+                    setChannel(false)
                 });
         }
     }, [token]);
