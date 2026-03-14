@@ -69,7 +69,7 @@ export default function Settings() {
   let token = useSelector((state) => state.userdetails.token)
   useEffect(() => {
     if (token) {
-      axios.post('https://youtube-server-all.up.railway.app/api/auth/view-profile', {}, {
+      axios.post('https://youtube-server-a5ha.onrender.com/api/auth/view-profile', {}, {
         headers: {
           'authorization': `Bearer ${token}`
         }
@@ -85,7 +85,7 @@ export default function Settings() {
 
   let updatecountry = (e) => {
     let country = e.target.value
-    axios.post('https://youtube-server-all.up.railway.app/api/auth/update-profile', { country }, {
+    axios.post('https://youtube-server-a5ha.onrender.com/api/auth/update-profile', { country }, {
       headers: {
         'authorization': `Bearer ${token}`
       }

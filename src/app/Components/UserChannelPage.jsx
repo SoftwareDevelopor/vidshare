@@ -23,7 +23,7 @@ export default function UserChannelPage() {
 
     useEffect(() => {
         if (token) {
-            axios.post('https://youtube-server-all.up.railway.app/api/auth/view-profile', {}, {
+            axios.post('https://youtube-server-a5ha.onrender.com/api/auth/view-profile', {}, {
                 headers: {
                     'authorization': `Bearer ${token}`
                 }
@@ -78,7 +78,7 @@ export default function UserChannelPage() {
                                             subscribers || subscribers.length > 0 ?
                                                 subscribers.map((image, index) => {
                                                     return (
-                                                        <img src={`https://youtube-server-all.up.railway.app/uploads/users/${image.image}`} alt="" className='w-15 h-15 rounded-full' />
+                                                        <img src={`https://youtube-server-a5ha.onrender.com/uploads/users/${image.image}`} alt="" className='w-15 h-15 rounded-full' />
                                                     )
                                                 })
                                                 :

@@ -28,7 +28,7 @@ export default function Playlist({ id }) {
     createPlaylistFormData.append('name', e.target.name.value)
     createPlaylistFormData.append('description', e.target.description.value)
     if (bannerFile) createPlaylistFormData.append('image', bannerFile)
-    await axios.post(`https://youtube-server-all.up.railway.app/api/video/create-playlist?id=${id}`, createPlaylistFormData)
+    await axios.post(`https://youtube-server-a5ha.onrender.com/api/video/create-playlist?id=${id}`, createPlaylistFormData)
       .then((response) => {
         if (response.data.status) {
           toast.success(response.data.msg)
@@ -52,7 +52,7 @@ export default function Playlist({ id }) {
   }
 
   useEffect(() => {
-    axios.post(`https://youtube-server-all.up.railway.app/api/video/view-all-playlists?id=${id}`)
+    axios.post(`https://youtube-server-a5ha.onrender.com/api/video/view-all-playlists?id=${id}`)
       .then((response) => {
         if (response.data.status == true) {
           setplaylists(response.data._data)
@@ -81,7 +81,7 @@ export default function Playlist({ id }) {
   });
 
   let deleteplaylist=(playlistid)=>{
-    axios.post(`https://youtube-server-all.up.railway.app/api/video/delete-playlist?id=${playlistid}`)
+    axios.post(`https://youtube-server-a5ha.onrender.com/api/video/delete-playlist?id=${playlistid}`)
     .then((response)=>{
       if(response.data.status==true){
         sedeletetplaylist(!deletePlaylist)
@@ -114,7 +114,7 @@ export default function Playlist({ id }) {
                   {playlist.image ? (
                     <>
                       <img
-                        src={`https://youtube-server-all.up.railway.app/uploads/videos/playlists/${playlist.image}`}
+                        src={`https://youtube-server-a5ha.onrender.com/uploads/videos/playlists/${playlist.image}`}
                         alt={playlist.name}
                         className="w-full h-45 object-cover"
                       />

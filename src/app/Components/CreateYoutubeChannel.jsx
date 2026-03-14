@@ -56,7 +56,7 @@ export default function CreateYoutubeChannel() {
                 formData.append('singleimage', bannerFile);
 
                 const bannerResponse = await axios.post(
-                    'https://youtube-server-all.up.railway.app/api/auth/upload-channel-banner',
+                    'https://youtube-server-a5ha.onrender.com/api/auth/upload-channel-banner',
                     formData,
                     {
                         headers: {
@@ -75,7 +75,7 @@ export default function CreateYoutubeChannel() {
 
             // Then update channel details
             const channelResponse = await axios.post(
-                'https://youtube-server-all.up.railway.app/api/auth/update-profile',
+                'https://youtube-server-a5ha.onrender.com/api/auth/update-profile',
                 {
                     channel_name: e.target.channel_name.value,
                     date_of_birth: e.target.date_of_birth.value,

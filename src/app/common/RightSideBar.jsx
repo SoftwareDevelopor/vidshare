@@ -23,7 +23,7 @@ export default function RightSideBar() {
   })
 
   useEffect(() => {
-    axios.post("https://youtube-server-all.up.railway.app/api/video/getallvideos")
+    axios.post("https://youtube-server-a5ha.onrender.com/api/video/getallvideos")
       .then((response) => {
         if (response.data.status) {
           if (token) {
@@ -41,7 +41,7 @@ export default function RightSideBar() {
   }, [token,videoviews])
 
   let handleincrementviews=(videoId)=>{
-    axios.post(`https://youtube-server-all.up.railway.app/api/video/increment-views?id=${videoId}`)
+    axios.post(`https://youtube-server-a5ha.onrender.com/api/video/increment-views?id=${videoId}`)
     .then((response)=>{
       if(response.data.status){
         toast.success(response.data.msg)
@@ -83,9 +83,9 @@ export default function RightSideBar() {
 
                     <Link key={index} href={`/watch/${video._id}`}>
                       <div className="border border-gray-300 lg:p-2 lg:m-2 rounded-lg h-[330px]" onClick={()=>handleincrementviews(video._id)}>
-                        <img src={"https://youtube-server-all.up.railway.app/uploads/videos/thumbnails/" + video.thumbnail} alt={video.videotitle} className="w-full h-50 object-cover rounded-md mb-2" />
+                        <img src={"https://youtube-server-a5ha.onrender.com/uploads/videos/thumbnails/" + video.thumbnail} alt={video.videotitle} className="w-full h-50 object-cover rounded-md mb-2" />
                         <div className="flex gap-2 p-2">
-                          <img src={"https://youtube-server-all.up.railway.app/uploads/users/" + video.videouploader.image} alt={video.videouploader.name} className="w-10 h-10 rounded-full" />
+                          <img src={"https://youtube-server-a5ha.onrender.com/uploads/users/" + video.videouploader.image} alt={video.videouploader.name} className="w-10 h-10 rounded-full" />
                           <div>
                             <h1 className="text-lg font-bold">{video.videotitle}</h1>
                             <h2 className="text-md text-gray-600">{video.videouploader.channel_name}</h2>

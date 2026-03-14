@@ -31,7 +31,7 @@ export default function WatchVideos() {
 
     useEffect(() => {
         if (id) {
-            axios.post(`https://youtube-server-all.up.railway.app/api/video/view-video?id=${id}`)
+            axios.post(`https://youtube-server-a5ha.onrender.com/api/video/view-video?id=${id}`)
                 .then((res) => {
                     if (res.data.status) {
                         setVideo(res.data._data)
@@ -42,7 +42,7 @@ export default function WatchVideos() {
     }, [id, likeDisabled, dislikeDisabled])
 
     useEffect(() => {
-        axios.post("https://youtube-server-all.up.railway.app/api/video/getallvideos")
+        axios.post("https://youtube-server-a5ha.onrender.com/api/video/getallvideos")
             .then((response) => {
                 setVideos(response.data._data)
             })
@@ -59,7 +59,7 @@ export default function WatchVideos() {
 
     useEffect(() => {
         if (token) {
-            axios.post('https://youtube-server-all.up.railway.app/api/auth/view-profile', {}, {
+            axios.post('https://youtube-server-a5ha.onrender.com/api/auth/view-profile', {}, {
                 headers: {
                     'authorization': `Bearer ${token}`
                 }
@@ -75,7 +75,7 @@ export default function WatchVideos() {
 
     let handleIncrementLike = (e) => {
         e.preventDefault()
-        axios.post(`https://youtube-server-all.up.railway.app/api/video/incrementlikes?id=${id}`, {
+        axios.post(`https://youtube-server-a5ha.onrender.com/api/video/incrementlikes?id=${id}`, {
             likedByUserIds: user._id
         })
             .then((response) => {
@@ -92,7 +92,7 @@ export default function WatchVideos() {
 
     let handleDecrementLike = (e) => {
         e.preventDefault()
-        axios.post(`https://youtube-server-all.up.railway.app/api/video/decrement-like?id=${id}`, {
+        axios.post(`https://youtube-server-a5ha.onrender.com/api/video/decrement-like?id=${id}`, {
             dislikedByUserIds: user._id
         })
             .then((response) => {
@@ -110,7 +110,7 @@ export default function WatchVideos() {
     let handleSubscribe = (e) => {
         e.preventDefault()
         let videouploaderid = video.videouploader._id
-        axios.post(`https://youtube-server-all.up.railway.app/api/auth/subscribe/?id=${videouploaderid}`, {
+        axios.post(`https://youtube-server-a5ha.onrender.com/api/auth/subscribe/?id=${videouploaderid}`, {
             channel_ids: user._id
         })
             .then((response) => {
@@ -128,7 +128,7 @@ export default function WatchVideos() {
     let handleUnsubscribe = (e) => {
         e.preventDefault()
         let videouploaderid = video.videouploader._id
-        axios.post(`https://youtube-server-all.up.railway.app/api/auth/decreasesubscribers?id=${videouploaderid}`, {
+        axios.post(`https://youtube-server-a5ha.onrender.com/api/auth/decreasesubscribers?id=${videouploaderid}`, {
             channel_ids: user._id
         })
             .then((response) => {
@@ -210,7 +210,7 @@ export default function WatchVideos() {
     }
     let handleDownload = async (videoID) => {
         try {
-            const url = `https://youtube-server-all.up.railway.app/api/video/download-video/create?id=${user._id}`
+            const url = `https://youtube-server-a5ha.onrender.com/api/video/download-video/create?id=${user._id}`
             const config = { responseType: 'blob' }
             if (token) config.headers = { authorization: `Bearer ${token}` }
             const response = await axios.post(url, {
@@ -240,7 +240,7 @@ export default function WatchVideos() {
     }
     let handleWatchLater = (videoid) => {
         let userID = user._id
-        axios.post(`https://youtube-server-all.up.railway.app/api/video/watch-later/add-video-watch-later?id=${userID}`, {
+        axios.post(`https://youtube-server-a5ha.onrender.com/api/video/watch-later/add-video-watch-later?id=${userID}`, {
             VIDEOID: videoid
         })
             .then((response) => {
@@ -288,12 +288,12 @@ export default function WatchVideos() {
                                     className="w-full h-full rounded-xl" onPlay={() => setisplaying(true)} onPause={() => setisplaying(false)}
                                     onLoadedMetadata={() => { }}
                                 >
-                                    <source src={`https://youtube-server-all.up.railway.app/uploads/videos/videofile/${video.videofile}`} type="video/mp4" />
-                                    <source src={`https://youtube-server-all.up.railway.app/uploads/videos/videofile/${video.videofile}`} type="video/webm" />
+                                    <source src={`https://youtube-server-a5ha.onrender.com/uploads/videos/videofile/${video.videofile}`} type="video/mp4" />
+                                    <source src={`https://youtube-server-a5ha.onrender.com/uploads/videos/videofile/${video.videofile}`} type="video/webm" />
 
-                                    <source src={`https://youtube-server-all.up.railway.app/uploads/videos/videofile/${video.videofile}`} type="video/ogg" />
+                                    <source src={`https://youtube-server-a5ha.onrender.com/uploads/videos/videofile/${video.videofile}`} type="video/ogg" />
 
-                                    <source src={`https://youtube-server-all.up.railway.app/uploads/videos/videofile/${video.videofile}`} type="video/webm" />
+                                    <source src={`https://youtube-server-a5ha.onrender.com/uploads/videos/videofile/${video.videofile}`} type="video/webm" />
                                 </video>
                                 <div className="absolute top-1/2 left-1/2 -translate-1/2 border hidden group-hover:block" onClick={handlePlayPause}>
                                     {isplaying ? <FaCirclePause className='lg:text-8xl text-xl font-extrabold text-red-700' /> : <FaCirclePlay className='lg:text-8xl text-xl font-extrabold text-red-700' />}
@@ -343,7 +343,7 @@ export default function WatchVideos() {
                             <div className="flex gap-5 items-center justify-between">
                                 <div className="flex gap-3 items-center">
                                     <Link href={video.videouploader._id == user._id ? '/user-channel' : `/channel-page/${video.videouploader._id}`}>
-                                        <img src={`https://youtube-server-all.up.railway.app/uploads/users/${video.videouploader.image}`} alt="" className='w-10 h-10 rounded-full' />
+                                        <img src={`https://youtube-server-a5ha.onrender.com/uploads/users/${video.videouploader.image}`} alt="" className='w-10 h-10 rounded-full' />
                                     </Link>
                                     {
                                         subscribe ?
@@ -392,12 +392,12 @@ export default function WatchVideos() {
                                 return (
                                     <Link href={`/watch/${v._id}`} key={i}>
                                         <div className="w-full flex gap-2 h-[200px] hover:bg-gray-300">
-                                            <img src={"https://youtube-server-all.up.railway.app/uploads/videos/thumbnails/" + v.thumbnail} alt={v.videotitle} className='max-w-[350px]' />
+                                            <img src={"https://youtube-server-a5ha.onrender.com/uploads/videos/thumbnails/" + v.thumbnail} alt={v.videotitle} className='max-w-[350px]' />
                                             <div className="flex gap-2  flex-col">
                                                 <h1 className="text-2xl font-bold">{v.videotitle}</h1>
                                                 <div className='flex gap-2 items-center'>
                                                     <Link href={'/user-channel'}>
-                                                        <img src={"https://youtube-server-all.up.railway.app/uploads/users/" + v.videouploader.image} alt="" className='w-10 h-10 rounded-full' />
+                                                        <img src={"https://youtube-server-a5ha.onrender.com/uploads/users/" + v.videouploader.image} alt="" className='w-10 h-10 rounded-full' />
                                                     </Link>
                                                     <div>
                                                         <h2 className='text-gray-600 text-xl font-semibold'>{v.videouploader.channel_name}</h2>

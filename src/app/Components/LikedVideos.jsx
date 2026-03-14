@@ -13,7 +13,7 @@ export default function LikedVideos({id}) {
 
     useEffect(() => {
         if (id) {
-            axios.post(`https://youtube-server-all.up.railway.app/api/video/liked-videos/view?id=${id}`)
+            axios.post(`https://youtube-server-a5ha.onrender.com/api/video/liked-videos/view?id=${id}`)
                 .then((response) => {
                     if (response.data.status === true) {
                         toast.success(response.data.msg)
@@ -29,7 +29,7 @@ export default function LikedVideos({id}) {
     }, [id, updateState])
 
     const handleUnlike = (videoId) => {
-        axios.post(`https://youtube-server-all.up.railway.app/api/video/decrement-like?id=${videoId}`, {
+        axios.post(`https://youtube-server-a5ha.onrender.com/api/video/decrement-like?id=${videoId}`, {
             dislikedByUserIds: id
         })
         .then((response) => {

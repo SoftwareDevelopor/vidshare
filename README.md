@@ -14,9 +14,8 @@ pnpm dev
 bun dev
 ```
 
-Open [https://youtube-clone-one-dun.vercel.app/] and [https://youtube-clone-oprs.onrender.com/] with your browser to see the result.
+Open "`https://vidshare-khaki.vercel.app/`" with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 

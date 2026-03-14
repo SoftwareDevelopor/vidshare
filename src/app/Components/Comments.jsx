@@ -1,3 +1,5 @@
+'use client'
+import { toast } from 'react-toastify'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
@@ -30,7 +32,7 @@ export default function Comments({ comments }) {
 
     try {
       await axios.post(
-        `https://youtube-server-all.up.railway.app/api/video/update-comments?id=${comments._id}`,
+        `https://youtube-server-a5ha.onrender.com/api/video/update-comments?id=${comments._id}`,
         { comments: { comments: updated } }
       )
       .then((res)=>{
@@ -55,7 +57,7 @@ export default function Comments({ comments }) {
         <img
           src={
             comments?.videouploader?.image
-              ? `https://youtube-server-all.up.railway.app/uploads/users/${comments.videouploader.image}`
+              ? `https://youtube-server-a5ha.onrender.com/uploads/users/${comments.videouploader.image}`
               : 'https://via.placeholder.com/40?text=👤'
           }
           alt="avatar"
@@ -106,7 +108,7 @@ export default function Comments({ comments }) {
                   src={
                     avatar.startsWith('http')
                       ? avatar
-                      : `https://youtube-server-all.up.railway.app/uploads/users/${avatar}`
+                      : `https://youtube-server-a5ha.onrender.com/uploads/users/${avatar}`
                   }
                   alt="avatar"
                   className="w-10 h-10 rounded-full"
