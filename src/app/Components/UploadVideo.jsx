@@ -75,6 +75,7 @@ export default function UploadVideo() {
             })
                 .then((res) => {
                     setuser(res.data._data)
+                    console.log(res.data._data)
                 })
                 .catch((error) => {
                     toast.error("Something went wrong...!")
@@ -94,7 +95,7 @@ export default function UploadVideo() {
         formData.append('description', e.target.description.value || '');
         formData.append('visibility', e.target.visibility.value || '');
         formData.append('agerestriction', e.target.agerestriction.value || '');
-        formData.append('videouploader', user._id || '');
+        formData.append('videouploader', user._id );
         formData.append('video_tags', videoTags || []);
         if (bannerFile) formData.append('thumbnail', bannerFile);
         if (videoFile) formData.append('videofile', videoFile);
@@ -148,7 +149,7 @@ export default function UploadVideo() {
                         </div>
                         <div className="">
                             <label htmlFor="">Video Uploader :--</label>
-                            <input type="text" value={user || token ? user?.channel_name : 'Your Channel'} name='videouploader' className='w-full py-2 border ps-3 rounded-lg' />
+                            <input type="text" value={user ? user.channel_name : ''} name='videouploader' className='w-full py-2 border ps-3 rounded-lg' />
                         </div>
                         <div className="">
                             <label htmlFor="">Video Tags :--</label>
