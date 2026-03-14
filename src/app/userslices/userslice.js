@@ -18,9 +18,13 @@ export let userslice = createSlice({
         logout: function(state) {
             state.token = null;
             Cookies.remove("token");
+        },
+        channelState: function(state, { payload }){
+            state.channel=payload.channel;
+            console.log(state.channel);
         }
     }
 });
 
 export default userslice.reducer;
-export const { userDetails, logout } = userslice.actions;
+export const { userDetails, logout, channelState } = userslice.actions;

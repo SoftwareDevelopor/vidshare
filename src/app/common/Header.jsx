@@ -108,8 +108,8 @@ export default function Header() {
     }
 
     let handleCreateChannel = () => {
-        route.push('/create-youtube-channel')
         setChannel(true)
+        route.push('/create-youtube-channel')
         setOpenUserModal(false)
     }
 
