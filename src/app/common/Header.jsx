@@ -6,7 +6,7 @@ import { BsEyeFill, BsEyeSlash, BsSearch } from 'react-icons/bs'
 import { BsPlus } from 'react-icons/bs';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout, userDetails } from '../userslices/userslice';
+import { channelState, logout, userDetails } from '../userslices/userslice';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { IoIosArrowForward } from 'react-icons/io'
@@ -33,6 +33,8 @@ export default function Header() {
                 dispatch(userDetails({ token: res.data.token }))
                 setOpenModal(false)
                 setChannel(false)
+                dispatch(channelState({ channel: !channel }))
+                e.target.reset()
                 toast.success(res.data.msg)
             })
             .catch((error) => {
@@ -60,6 +62,7 @@ export default function Header() {
                 obj.password = ''
                 setLoginModal(false)
                 setChannel(false)
+                dispatch(channelState({ channel: !channel }))
             }).catch((error) => {
                 toast.error("Something went wrong...!")
             })
@@ -80,6 +83,7 @@ export default function Header() {
                     setImagePath(res.data.image_url + res.data._data.image)
                     setuser(res.data._data)
                     setChannel(false)
+                    dispatch(channelState({ channel: !channel }))
                 })
                 .catch((error) => {
                     toast.error("Something went wrong...!")
@@ -109,6 +113,7 @@ export default function Header() {
 
     let handleCreateChannel = () => {
         setChannel(true)
+        dispatch(channelState({ channel: !channel }))
         route.push('/create-youtube-channel')
         setOpenUserModal(false)
     }
@@ -136,6 +141,9 @@ export default function Header() {
             )
     }
 
+    let chanelstate=useSelector((state)=>{
+        console.log(state)
+    })
 
 
     return (
@@ -164,7 +172,7 @@ export default function Header() {
                                     <h2 className='text-3xl font-semibold'>Create</h2>
                                 </div>
                                 <div className='relative'>
-                                    <img src={imagePath} className='w-15 h-15 rounded-full cursor-pointer' alt="" onClick={() => { setOpenUserModal(!openUserModal), setChannel(false) }} />
+                                    <img src={imagePath} className='w-15 h-15 rounded-full cursor-pointer' alt="" onClick={() => { setOpenUserModal(!openUserModal), dispatch(channelState({ channel: !channel })) }} />
                                     <div className={`absolute right-0 top-[100%] border lg:w-[320px] p-2 bg-white rounded-lg text-lg cursor-pointer  ${openUserModal == true ? '' : 'hidden'}`}>
                                         {
                                             channel ?

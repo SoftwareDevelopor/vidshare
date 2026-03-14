@@ -4,8 +4,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { useDropzone } from 'react-dropzone';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { channelState } from '../userslices/userslice';
 
 
 export default function CreateYoutubeChannel() {
@@ -14,6 +15,7 @@ export default function CreateYoutubeChannel() {
     const [bannerFile, setBannerFile] = useState(null);
     const [loading, setLoading] = useState(false);
     let route=useRouter()
+    let dispatch=useDispatch()
 
     const onDrop = (acceptedFiles) => {
         if (acceptedFiles.length > 0) {
@@ -93,13 +95,15 @@ export default function CreateYoutubeChannel() {
                 setPreview(null);
                 setBannerFile(null);
                 route.push('/')
-
+                dispatch(channelState({channel:true}))
                 } else {
                     toast.error('Channel creation failed: ' + channelResponse.data.msg);
             }
         } catch (error) {
+            dispatch(channelState({channel:false}))
             toast.error('An error occurred while creating the channel. Please try again.');
         } finally {
+            dispatch(channelState({channel:false}))
             setLoading(false);
         }
     }

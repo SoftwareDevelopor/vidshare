@@ -5,7 +5,8 @@ const { configureStore } = require("@reduxjs/toolkit");
 let myStore=configureStore({
     reducer:{
         userdetails: userslice,
-        searchVideos: searchSlice
+        searchVideos: searchSlice,
+        channel:channelState
     }
 })
 
