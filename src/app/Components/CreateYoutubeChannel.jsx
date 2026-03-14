@@ -14,8 +14,8 @@ export default function CreateYoutubeChannel() {
     const [preview, setPreview] = useState(null);
     const [bannerFile, setBannerFile] = useState(null);
     const [loading, setLoading] = useState(false);
-    let route=useRouter()
-    let dispatch=useDispatch()
+    let route = useRouter()
+    let dispatch = useDispatch()
 
     const onDrop = (acceptedFiles) => {
         if (acceptedFiles.length > 0) {
@@ -30,8 +30,8 @@ export default function CreateYoutubeChannel() {
                 };
                 reader.readAsDataURL(file);
             }
-            else{
-                let fileSizeInMB=file.size * 0.000001
+            else {
+                let fileSizeInMB = file.size * 0.000001
                 alert(`Your channel banner image file size of ${fileSizeInMB} MB is not matching the required size. Please upload the image of required size.`)
             }
         }
@@ -50,6 +50,8 @@ export default function CreateYoutubeChannel() {
     let handleCreateYoutubeChannel = async (e) => {
         e.preventDefault()
         setLoading(true)
+        dispatch(channelState({ channel: true }))
+        
 
         try {
             // First upload the banner image if provided
@@ -95,16 +97,13 @@ export default function CreateYoutubeChannel() {
                 setPreview(null);
                 setBannerFile(null);
                 route.push('/')
-                dispatch(channelState({channel:true}))
-                } else {
-                    toast.error('Channel creation failed: ' + channelResponse.data.msg);
+                dispatch(channelState({ channel: true }))
+            } else {
+                toast.error('Channel creation failed: ' + channelResponse.data.msg);
             }
         } catch (error) {
-            dispatch(channelState({channel:false}))
+            dispatch(channelState({ channel: false }))
             toast.error('An error occurred while creating the channel. Please try again.');
-        } finally {
-            dispatch(channelState({channel:false}))
-            setLoading(false);
         }
     }
 

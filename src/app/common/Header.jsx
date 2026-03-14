@@ -145,7 +145,6 @@ export default function Header() {
         return state.userdetails.channel
     })
 
-
     return (
         <>
             <div className="grid lg:grid-cols-[75%_auto] items-center px-4 gap-[50px] sticky top-0 z-50 bg-white">
