@@ -33,7 +33,7 @@ export default function Header() {
                 dispatch(userDetails({ token: res.data.token }))
                 setOpenModal(false)
                 setChannel(false)
-                dispatch(channelState({ channel: !channel }))
+                dispatch(channelState({ channel: channel }))
                 e.target.reset()
                 toast.success(res.data.msg)
             })
@@ -62,7 +62,7 @@ export default function Header() {
                 obj.password = ''
                 setLoginModal(false)
                 setChannel(false)
-                dispatch(channelState({ channel: !channel }))
+                dispatch(channelState({ channel: channel }))
             }).catch((error) => {
                 toast.error("Something went wrong...!")
             })
@@ -83,7 +83,7 @@ export default function Header() {
                     setImagePath(res.data.image_url + res.data._data.image)
                     setuser(res.data._data)
                     setChannel(false)
-                    dispatch(channelState({ channel: !channel }))
+                    dispatch(channelState({ channel: channel }))
                 })
                 .catch((error) => {
                     toast.error("Something went wrong...!")
@@ -113,7 +113,7 @@ export default function Header() {
 
     let handleCreateChannel = () => {
         setChannel(true)
-        dispatch(channelState({ channel: !channel }))
+        dispatch(channelState({ channel: channel }))
         route.push('/create-youtube-channel')
         setOpenUserModal(false)
     }
