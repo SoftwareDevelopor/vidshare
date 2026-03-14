@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
@@ -68,14 +68,13 @@ export default function UploadVideo() {
 
     useEffect(() => {
          if (token) {
-            axios.post('https://youtube-server-a5ha.onrender.com/api/auth/view-profile', {
+            axios.post('https://youtube-server-a5ha.onrender.com/api/auth/view-profile', {}, {
                 headers: {
                     'authorization': `Bearer ${token}`
                 }
             })
                 .then((res) => {
                     setuser(res.data._data)
-                    console.log(res.data._data)
                 })
                 .catch((error) => {
                     toast.error("Something went wrong...!")
