@@ -167,7 +167,7 @@ export default function Header() {
                                     <img src={imagePath} className='w-15 h-15 rounded-full cursor-pointer' alt="" onClick={() => { setOpenUserModal(!openUserModal), setChannel(false) }} />
                                     <div className={`absolute right-0 top-[100%] border lg:w-[320px] p-2 bg-white rounded-lg text-lg cursor-pointer  ${openUserModal == true ? '' : 'hidden'}`}>
                                         {
-                                            !channel ?
+                                            channel ?
                                                 <div className="grid grid-cols-2 gap-3 border-b w-full py-3">
 
                                                     <div className="flex flex-col items-center gap-2">
