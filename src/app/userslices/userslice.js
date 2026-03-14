@@ -6,7 +6,8 @@ import Cookies from "js-cookie";
 export let userslice = createSlice({
     name: "user",
     initialState: {
-        token: Cookies.get("token") || null
+        token: Cookies.get("token") || null,
+        channel:Cookies.get("channel")|| false
     },
     reducers: {
         userDetails: function(state, { payload }) {
@@ -21,7 +22,9 @@ export let userslice = createSlice({
         },
         channelState: function(state, { payload }){
             state.channel=payload.channel;
-            console.log(state.channel);
+            if(payload.channel){
+                Cookies.set("channel",payload.channel);
+            }
         }
     }
 });

@@ -172,7 +172,7 @@ export default function Header() {
                                     <h2 className='text-3xl font-semibold'>Create</h2>
                                 </div>
                                 <div className='relative'>
-                                    <img src={imagePath} className='w-15 h-15 rounded-full cursor-pointer' alt="" onClick={() => { setOpenUserModal(!openUserModal), dispatch(channelState({ channel: !channel })) }} />
+                                    <img src={imagePath} className='w-15 h-15 rounded-full cursor-pointer' alt="" onClick={() => { setOpenUserModal(!openUserModal), dispatch(channelState({ channel: false })) }} />
                                     <div className={`absolute right-0 top-[100%] border lg:w-[320px] p-2 bg-white rounded-lg text-lg cursor-pointer  ${openUserModal == true ? '' : 'hidden'}`}>
                                         {
                                             channel ?
