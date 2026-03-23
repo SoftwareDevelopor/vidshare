@@ -36,7 +36,7 @@ export default function RightSideBar() {
         }
       })
       .catch((error) => {
-        toast("Something went wrong...!")
+        toast.error("Something went wrong...!")
       })
   }, [token,videoviews])
 
@@ -77,7 +77,7 @@ export default function RightSideBar() {
 
             {
 
-              videos.length > 0 ?
+              videos.length > 0 || token ?
                 videos.sort(() => Math.random - 0.5).map((video, index) => (
                   video.visibility == "Public" ?
 

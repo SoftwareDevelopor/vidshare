@@ -46,6 +46,7 @@ export default function Header() {
         dispatch(logout())
         toast.info("Logout User..!")
         setOpenUserModal(false)
+        window.location.reload()
     }
 
     let handleLogin = (event) => {
@@ -141,23 +142,21 @@ export default function Header() {
             )
     }
 
-    let channelstate=useSelector((state)=>{
-        console.log(state.userdetails.channel)
+    let channelstate = useSelector((state) => {
         return state.userdetails.channel
     })
 
     return (
         <>
-            <div className="grid lg:grid-cols-[75%_auto] items-center px-4 gap-[50px] sticky top-0 z-50 bg-white">
-                <div className=" flex items-center justify-between  gap-[50px] mx-auto">
-                    <div className="flex gap-[50px] p-2 items-center">
-                        <FaBars className='text-2xl' />
-                        <Link href={'/'}>
-                            <img src="/logo.png" className='max-w-full h-12' alt="Youtube Logo" />
-                        </Link>
-                    </div>
-                    <form onSubmit={handleSearch} className="max-w-3xl flex items-center rounded-4xl border ">
-                        <input type="text" name="searchedText" className='w-[750px] py-3 ps-[25px] border-none outline-none focus:outline-none' id="" autoComplete='on' />
+
+            <div className="grid grid-cols-[75%_auto] items-center lg:px-4 py-1.5 lg:gap-[50px] gap-2 sticky top-0 z-50 bg-white">
+                <div className=" flex items-center justify-between lg:gap-[50px] gap-5 mx-auto">
+                    <Link href={'/'}>
+                        <img src="/logo.png" className='max-w-full h-12' alt="Youtube Logo" />
+                    </Link>
+                    
+                    <form onSubmit={handleSearch} className="max-w-3xl w-full flex items-center rounded-4xl border ">
+                        <input type="text" name="searchedText" className='lg:w-[750px] w-full py-3 ps-[25px] border-none outline-none focus:outline-none' id="" autoComplete='on' />
                         <button type='submit' className="bg-gray-400 p-2.5 rounded-r-4xl cursor-pointer">
                             <BsSearch className='text-3xl' />
                         </button>
@@ -241,7 +240,7 @@ export default function Header() {
                             </>
                             :
                             <>
-                                <button className='py-2.5 px-3.5 border rounded-3xl cursor-pointer' style={{ boxShadow: '6px 4px 2px rgba(0,0,0,0.3)' }} onClick={() => setOpenModal(true)}>SignIn</button>
+                                <button className='lg:py-2.5 py-1.5 lg:px-3.5 px-2 border rounded-3xl cursor-pointer' style={{ boxShadow: '6px 4px 2px rgba(0,0,0,0.3)' }} onClick={() => setOpenModal(true)}>SignIn</button>
                             </>
                     }
                 </div>
