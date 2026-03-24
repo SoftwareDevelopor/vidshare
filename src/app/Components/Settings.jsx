@@ -8,10 +8,12 @@ import { MdVerified } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { logout } from '../userslices/userslice';
+import { useRouter } from 'next/navigation';
 
 export default function Settings() {
   const [activeTab, setActiveTab] = useState('account');
   let [user, setuser] = useState({})
+  let router=useRouter()
   let [country, setcountry] = useState(false)
   let dispatch=useDispatch()
   let [togglebackground, settogglebackground] = useState(false)
@@ -122,6 +124,7 @@ export default function Settings() {
             dispatch(logout())
             window.location.reload()
             toast.success(res.data.msg)
+            router.push('/')
           } else {
             toast.error(res.data.msg)
           }
