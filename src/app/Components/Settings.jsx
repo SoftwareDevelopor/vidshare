@@ -5,13 +5,15 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { FiSettings, FiBell, FiSliders, FiMoon, FiHelpCircle } from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { logout } from '../userslices/userslice';
 
 export default function Settings() {
   const [activeTab, setActiveTab] = useState('account');
   let [user, setuser] = useState({})
   let [country, setcountry] = useState(false)
+  let dispatch=useDispatch()
   let [togglebackground, settogglebackground] = useState(false)
   const [toggleStates, setToggleStates] = useState({
     twoFactor: false,
@@ -75,7 +77,12 @@ export default function Settings() {
         }
       })
         .then((res) => {
-          setuser(res.data._data)
+          if (res.data.status) {
+            setuser(res.data._data)
+            toast.success(res.data.msg)
+          } else {
+            toast.error(res.data.msg)
+          }
         })
         .catch((error) => {
           toast.error("Something went wrong...!")
@@ -104,7 +111,25 @@ export default function Settings() {
   }
 
   let deleteaccount = () => {
-    console.log("delete account")
+    if(confirm('Are you sure you want to delete your account?')){
+      axios.post('https://youtube-server-a5ha.onrender.com/api/auth/delete-user', {}, {
+        headers: {
+          'authorization': `Bearer ${token}`
+        }
+      })
+        .then((res) => {
+          if (res.data.status) {
+            dispatch(logout())
+            window.location.reload()
+            toast.success(res.data.msg)
+          } else {
+            toast.error(res.data.msg)
+          }
+        })
+        .catch((error) => {
+          toast.error("Something went wrong...!")
+        });
+    }
   }
 
   const SettingItem = ({ label, description, children }) => (
@@ -377,7 +402,7 @@ export default function Settings() {
             <p className="text-gray-500 mb-8">Get help with your account</p>
 
             <div className="space-y-6">
-              
+
 
               <div className={`rounded-lg p-6 border border-gray-800 ${togglebackground ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
                 <h2 className="text-xl font-semibold mb-6 ">Contact Us</h2>
